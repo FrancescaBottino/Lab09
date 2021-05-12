@@ -1,9 +1,9 @@
-
 package it.polito.tdp.borders;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import it.polito.tdp.borders.model.Country;
 import it.polito.tdp.borders.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,6 +28,25 @@ public class FXMLController {
 
     @FXML
     void doCalcolaConfini(ActionEvent event) {
+    	
+    	txtResult.clear();
+    	int anno=Integer.parseInt(txtAnno.getText());
+    	
+    	model.creaGrafo(anno);
+    	
+    	System.out.println("Grafo creato con: "+model.getGrafo().vertexSet().size()+" vertici e "+model.getGrafo().edgeSet().size()+" archi.");
+    	
+    	txtResult.appendText("Numero componenti connesse: "+model.getNumeroComponentiConnesse()+"\n");
+    	
+    	String s="";
+    	
+    	//grado del vertice
+    	for(Country c: model.getVertexSet()) {
+    	    s+=c.getNome()+" "+model.getGrafo().degreeOf(c)+"\n";
+    	}
+    	
+    	txtResult.appendText(s);
+    	
 
     }
 
