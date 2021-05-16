@@ -1,6 +1,6 @@
 package it.polito.tdp.borders.model;
 
-public class Country {
+public class Country implements Comparable<Country>{
 	
 	private int code;
 	private String abb;
@@ -57,6 +57,17 @@ public class Country {
 		if (code != other.code)
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return nome;
+	}
+
+	@Override
+	public int compareTo(Country altro) {
+		
+		return this.nome.compareTo(altro.getNome());
 	}
 	
 	
